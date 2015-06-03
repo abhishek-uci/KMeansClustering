@@ -35,10 +35,9 @@ import org.apache.hadoop.hbase.client.HBaseAdmin;
 import org.apache.hadoop.hbase.TableName;
 
 
-public class HbaseTest {
+public class KMeans {
 
 	public static int cons;
-	public static int ruchi=0;
 	public static long ItrCount = 0;
 	public static boolean converge = false;
 
@@ -319,7 +318,6 @@ public class HbaseTest {
 				put.add(Bytes.toBytes("Centroids"), Bytes.toBytes("centers"), Bytes.toBytes(centerStr));
 				context.getCounter(HbaseTest.Kmeans.count).increment(1L);
 				context.write(null, put);
-				System.out.println("value of RUCHI = "+ ruchi++);
 			}
 		}
 	} 	
@@ -468,7 +466,6 @@ public class HbaseTest {
 				throw new IOException("error with job!");
 			}
 			System.out.println("4th mapper reducer done!!");
-			System.out.println("Value of close = "+ ItrCount);
 			ItrCount += job3.getCounters().findCounter(HbaseTest.Kmeans.count).getValue();
 
 		}
